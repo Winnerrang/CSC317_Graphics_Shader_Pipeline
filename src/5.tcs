@@ -17,6 +17,10 @@ void main()
   /////////////////////////////////////////////////////////////////////////////
   // Replace with your code:
   pos_es_in[gl_InvocationID] = pos_cs_in[gl_InvocationID];
+  gl_TessLevelOuter[0] = 5;
+  gl_TessLevelOuter[1] = 5;
+  gl_TessLevelOuter[2] = 5;
+  gl_TessLevelInner[0] = 5;
   /////////////////////////////////////////////////////////////////////////////
 }
 

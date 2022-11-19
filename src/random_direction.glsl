@@ -10,6 +10,9 @@ vec3 random_direction( vec3 seed)
 {
   /////////////////////////////////////////////////////////////////////////////
   // Replace with your code 
-  return vec3(1,0,0);
+  vec2 res = random2(seed);
+  float phi = res.x * M_PI;
+  float theta = res.y * 2 * M_PI;
+  return vec3(sin(phi) * cos(theta), sin(phi) * sin(theta), cos(phi));
   /////////////////////////////////////////////////////////////////////////////
 }

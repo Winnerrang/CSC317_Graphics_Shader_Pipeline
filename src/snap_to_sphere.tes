@@ -27,7 +27,22 @@ void main()
 {
   /////////////////////////////////////////////////////////////////////////////
   // Replace with your code 
-  pos_fs_in = interpolate(gl_TessCoord, pos_es_in[0], pos_es_in[1], pos_es_in[2]);
+  float rotationT = 4;
+  float theta = 2 * M_PI * animation_seconds /rotationT;
+
+  
+  sphere_fs_in = interpolate(gl_TessCoord, pos_es_in[0], pos_es_in[1], pos_es_in[2]).xyz;
+  sphere_fs_in = normalize(sphere_fs_in);
+
+  view_pos_fs_in = view * model(is_moon, theta) * vec4(sphere_fs_in, 1.0);
+
+  // normal is the world coordinate
+
+  mat4 rotate = identity() * int(!is_moon) + rotate_about_y(theta) * int(is_moon);
+  normal_fs_in = (rotate * vec4(sphere_fs_in, 1.0)).xyz;
+
+  pos_fs_in = proj * view_pos_fs_in;
+
   gl_Position = pos_fs_in;
   /////////////////////////////////////////////////////////////////////////////
 }

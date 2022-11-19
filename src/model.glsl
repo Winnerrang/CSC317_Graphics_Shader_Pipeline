@@ -7,10 +7,15 @@
 // Returns affine model transformation as 4x4 matrix
 //
 // expects: identity, rotate_about_y, translate, PI
+
 mat4 model(bool is_moon, float time)
 {
   /////////////////////////////////////////////////////////////////////////////
   // Replace with your code 
-  return identity();
+
+
+  mat4 result = int(!is_moon) * identity() + int(is_moon) * rotate_about_y(time) * translate(vec3(2 ,0, 0)) * uniform_scale(0.3);
+
+  return result;
   /////////////////////////////////////////////////////////////////////////////
 }

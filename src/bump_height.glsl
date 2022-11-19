@@ -10,6 +10,14 @@ float bump_height( bool is_moon, vec3 s)
 {
   /////////////////////////////////////////////////////////////////////////////
   // Replace with your code 
-  return 0 ;
+  float twist_factor = int(is_moon) * 50 + (1-int(is_moon)) * 11;
+  float density = int(is_moon) * 3 + (1-int(is_moon)) * 10;
+  float weight = 4;
+  float noise = sqrt(abs(1 + cos(s.x + twist_factor * improved_perlin_noise(density * s))/weight));
+
+  float heavySideFactor = int(is_moon) * 1.5 + (1-int(is_moon)) * 0.8;
+
+  return smooth_heaviside(noise, heavySideFactor);
+
   /////////////////////////////////////////////////////////////////////////////
 }

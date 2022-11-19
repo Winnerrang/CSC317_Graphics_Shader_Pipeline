@@ -24,7 +24,11 @@ out vec4 pos_cs_in;
 void main()
 {
   /////////////////////////////////////////////////////////////////////////////
-  // Replace with your code 
-  pos_cs_in = vec4(pos_vs_in,1.0);
+  // Replace with your code
+
+  float rotationT = 4;
+  float theta = 2 * M_PI * animation_seconds /rotationT;
+
+  pos_cs_in = proj * view * model(is_moon, theta) * vec4(pos_vs_in,1.0);
   /////////////////////////////////////////////////////////////////////////////
 }
